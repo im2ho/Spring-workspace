@@ -1,0 +1,10 @@
+package com.kh.springPJ;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class IntroController {
+	public String getIntro() {
+		return "intro";
+	}
+}

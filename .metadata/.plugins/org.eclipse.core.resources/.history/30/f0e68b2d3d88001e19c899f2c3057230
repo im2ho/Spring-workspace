@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- 
+	xmlns=""
+		선언하기 위해서 사용
+	xmlns:약어 
+		어떤 내용을 약어를 사용해서 단축해서 표현 가능
+	xmlns="http://www.thymeleaf.org"
+		Thymeleaf 문법을 사용하겠습니다~
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="EUC-KR">
+		<title>Hello</title>
+	</head>
+	<body>
+		<h1></h1>
+	</body>
+</html>

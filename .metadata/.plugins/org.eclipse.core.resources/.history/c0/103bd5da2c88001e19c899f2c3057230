@@ -1,0 +1,10 @@
+##### server port 설정
+server.port=8081
+
+##### DB 연동할 때 연동할 conn 설정
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.username = shinee
+spring.datasource.password= shinee
+#spring.mvc.view.prefix=
+#spring.mvc.view.suffix=

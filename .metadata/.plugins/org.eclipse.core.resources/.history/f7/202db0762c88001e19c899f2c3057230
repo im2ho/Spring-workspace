@@ -1,0 +1,7 @@
+##### server port 설정
+server.port=8081
+
+##### DB 연동할 때 연동할 conn 설정
+
+#spring.mvc.view.prefix=
+#spring.mvc.view.suffix=
