@@ -2,6 +2,8 @@ package com.kh.springdb.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class UserModel {
 	
 	/*
@@ -15,7 +17,8 @@ public class UserModel {
 	private int mno;
 	private String mname;
 	private String memail;
-	private Date mbirth;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date mbirth = new Date();
 	
 	//Getter&Setter----------------
 	public int getMno() {

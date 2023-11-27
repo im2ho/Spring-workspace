@@ -23,4 +23,19 @@ public class UserService {
 	public UserModel getUserById(int id) {
 		return userMapper.getUserById(id);
 	}
+	
+	//한 명의 회원 정보 DB에 삽입하기
+	public void registerUser(UserModel user) {
+		userMapper.insertUser(user);
+	}
+	
+	//유저 정보 수정해서 DB에 저장하기
+	public void updateUser(UserModel user) {
+		userMapper.updateUser(user);
+	}
+	
+	//유저 삭제 정보 DB에 적용
+	public void deleteUser(int mno) {
+		userMapper.deleteUser(mno);
+	}
 }

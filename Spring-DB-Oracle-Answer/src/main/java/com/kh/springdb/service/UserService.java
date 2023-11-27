@@ -20,8 +20,20 @@ public class UserService {
 	}
 	
 	//하나의 회원 정보 가져오기
-	public User getUserById(int id) {
-		return userMapper.getUserById(id);
+	public User getUserById(int mno) {
+		return userMapper.getUserById(mno);
 	}
 	
+	//한명의 회원 정보 DB에 저장하기
+	public void registerUser(User user) {
+		userMapper.insertUser(user);
+	}
+    public void saveUser(User user) {
+        userMapper.saveUser(user);
+    }
+
+	//회원의 정보 수정해서 DB에 저장하기
+	public void updateUser(User user) {
+		userMapper.updateUser(user);
+	}
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.springdb.mapper.BoardMapper">
+	
+	<!-- resultMap으로 다 가지고 오기 -->
+	<!-- 파라미터 타입이 여러개일 때 할 수 있는 선택! -->
+	<resultMap id="BoardResultMap" type="com.kh.springdb.model.Board">
+		<id property="board_id" column="board_id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="author" column="author"/>
+	</resultMap>
+	
+	
+	<!-- 전체 게시판 내용 조회하는 어쩌구 --><!-- resultType 아니고 resultMap임 주의 (두 개 동시 사용 불가)-->
+	<select id="getAllBoards" resultMap="BoardResultMap">
+		SELECT * FROM board
+	</select>
+	
+	<!-- 게시물 1개 상세보기 -->
+	<select id="getBoardById" parameterType="int" resultMap="BoardResultMap">
+		SELECT * FROM board WHERE board_id = #{board_id}
+	</select>
+	
+	<!-- 게시판 글 쓰기 -->
+	<insert id="insertBoard" parameterType="com.kh.springdb.model.Board">
+		INSERT INTO board(board_id, title, content, author)
+		VALUES(#{board_id}, #{title}, #{content}, #{author})
+	</insert>
+	
+	<!-- 게시판 글 수정 -->
+	<update id="updateBoard" parameterType="com.kh.springdb.model.Board">
+		UPDATE board 
+		SET title= #{title}, content=#{content}, author=#{author}
+		WHERE board_id = #{board_id}
+	</update>
+	
+	<!-- 게시판 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE board_id = #{board_id}
+	</delete>
+	
+	<!-- 게시글 전체 삭제 -->
+	<delete id="deleteAllBoards">
+		DELETE FROM board
+	</delete>
+	
+</mapper>

@@ -10,7 +10,23 @@
 	<!-- 아이디 1개 조회 -->
 	<select id="getUserById" parameterType="int" resultType="com.kh.springdb.model.User"> 
 											 
-		SELECT * FROM member_info WHERE MNO = #{id}
+		SELECT * FROM member_info WHERE MNO = #{mno}
 	</select>
-
+	
+	<!-- 회원가입 하기 위한 insert 구문 -->
+	<insert id="insertUser"  parameterType="com.kh.springdb.model.User">
+		INSERT INTO MEMBER_INFO (MNO, MNAME, MEMAIL, MBIRTH)
+		VALUES (#{mno}, #{mname}, #{memail}, #{mbirth})
+	</insert>
+	    <select id="loginUser" resultType="com.kh.springdb.model.User">
+        SELECT * FROM MEMBER_INFO WHERE MEMAIL = #{memail}
+    </select>
+	<update id="updateUser" parameterType="com.kh.springdb.model.User">
+	UPDATE MEMBER_INFO
+	SET
+	MNAME = #{mname},
+	MEMAIL = #{memail}
+	WHERE MNO = #{mno}
+	</update>
+	
 </mapper>

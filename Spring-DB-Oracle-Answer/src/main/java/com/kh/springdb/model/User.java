@@ -2,6 +2,8 @@ package com.kh.springdb.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /*
 MNO	NUMBER(38,0)
 MNAME	VARCHAR2(50 BYTE)
@@ -12,7 +14,9 @@ public class User {
 	private int mno;
 	private String mname;
 	private String memail;
-	private Date mbirth;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date mbirth = new Date();
 	
 	public int getMno() {
 		return mno;

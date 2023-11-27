@@ -14,4 +14,12 @@ public interface UserMapper {
 	//아이디로 1개 조회 메서드
 	UserModel getUserById(int id);
 	
+	//user추가 메서드
+	void insertUser(UserModel user);
+	
+	//유저 정보 수정 메서드
+	void updateUser(UserModel user);
+	
+	//유저 삭제 메서드
+	void deleteUser(int mno);
 }

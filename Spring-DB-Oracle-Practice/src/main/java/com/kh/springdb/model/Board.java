@@ -1,6 +1,6 @@
 package com.kh.springdb.model;
 
-public class Board_Model {
+public class Board {
 	
 	/*
 	 	BOARD_ID	NUMBER(10,0)

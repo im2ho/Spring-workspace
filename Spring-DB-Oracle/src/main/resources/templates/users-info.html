@@ -22,6 +22,8 @@
 					<td th:text="${u.mname}"></td>
 					<td th:text="${u.memail}"></td>
 					<td th:text="${u.mbirth}"></td>
+					<td><a th:href="'/api/user/update/' + ${user.mno}">수정하기</a></td>
+					<td><a th:href="/user-delete/' + ${user.mno}">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>

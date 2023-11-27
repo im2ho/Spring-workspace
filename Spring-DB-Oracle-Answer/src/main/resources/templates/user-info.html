@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="EUC-KR">
-<title>아이디 하나만 가지고오기</title>
+    <meta charset="UTF-8">
+    <title>사용자 정보 조회</title>
 </head>
 <body>
 
-</body>
-</html>
+    <h1>사용자 정보 조회</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>name</th>
+                <th>email</th>
+                <th>birth</th>
+                <th>modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.mno}"></td>
+                <td th:text="${user.mname}"></td>
+                <td th:text="${user.memail}"></td>
+                <td th:text="${user.mbirth}"></td>
+                <td><a th:href="@{'/user-update/' + ${user.mno}}">click</a></td>
+            </tr>
+        </tbody>
+    </table>

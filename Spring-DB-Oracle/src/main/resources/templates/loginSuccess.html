@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+	<body>
+		<script th:if="${loginSuccess}">
+			alert("로그인 완료");
+		</script>
+		<h2>로그인에 성공</h2>
+		<a th:href="@{/}"><button>go main</button></a>
+	</body>
+</html>
