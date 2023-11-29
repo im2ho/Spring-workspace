@@ -28,7 +28,7 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	//모든 제품을 보기 위한 제품 List 확인 메서드
+	//모든 제품을 보기 위한 제품 List 확인 메서드 (주소값 하나에는 메서드 1개만 존재 가능 주의~)
 	@GetMapping
 	public String getAllProducts(Model model){
 		List<Products> products = productService.getAllProducts();
@@ -60,10 +60,15 @@ public class ProductController {
         return "redirect:/products";
     }
 	
-	//수정 메서드...?
-	@GetMapping("/edit/{id}")
+	//상품 정보 수정 메서드
+	@GetMapping("/update/{id}")
 	public String editProduct(@PathVariable("id") Long product_id, Model model) {
 		Optional<Products> product = productService.getProductById(product_id);
+		//productService.getProductById(product_id)로 id값을 가져와서 id에 해당하는 제품을 가지고온다
+		//if) id에 해당하는 제품 X -> Optoinal 또한 빈값
+		//만약 Optional에 값이 없을 경우, 에러 발생하므로.. 값이 비어있을 경우에 대비한 예외 값 처리 필요
+		//	예외값처리: orElse 이용 > 대체값 제공 혹은 페이지이동처리 (error.html등등..)
+		//			이외에 orElseGet(대체값생성함수), orElseThroew(예외던지기) 잇음..근데 머 나중에 할것
 		product.ifPresent(value -> model.addAttribute("product", value));
 		return "product_form";
 	}
@@ -84,7 +89,6 @@ public class ProductController {
 		view를 생성하고 반환하는 역할을 하기도 함
 		주로 @RequestMapping과 함께 사용하고 HTTP 요청을 처리하고 그 결과를 View로 보냄
 		데이터를 반환할 때는 Model 객체를 통해 View에 데이터를 전달
-		
 	
 	@RestController
 		RESTful 웹 서비스를 제공하는데 보다 더 특화된 어노테이션
@@ -92,11 +96,24 @@ public class ProductController {
 		위와 같은 기능들을 편리하게 사용할 수 있도록 조금 더 특수하게 만들어진 어노테이션
 		
 	~~~ 정리 ~~~
-	@Controller : View(html 파일) 반환
+	@Controller : View 템플릿에 있는 (html 파일)과 상호작용 할 수있도록 제어하는 컨트롤러
 	@RestController : @Controller에 @ResponseBody를 추가로 사용하는 것을 대체 가능 > 간결한 코드
 	
 	@ResponseBody
 		메서드가 return해서 반환해야하는 값을 HTTP 응답에서 html로 전달하는 것이 아닌
 		java 코드에서 직접 본문으로 전달해서 사용할 수 있는 어노테이션
 	
+*/
+
+/*
+	Model model
+		컨트롤러에서 뷰로 데이터를 전달할 때 사용하는 인터페이스
+		컨트롤러에 있는 메서드에서 매개변수로 Model을 선언하면 Get에 추가한 데이터는 자동으로 뷰에 전달됨
+		Select에서 DB에서 담겨온 데이터는 자동으로 모델에 담겨져 View(html)파일로 전달됨
+		
+	@ModelAttribute Board board
+	(@ModelAttribute 클래스명 클래스들대신하는변수명)
+		폼 데이터나 URL 경로에서 전달된 데이터를 객체에 넣어줄 때 사용
+		클라이언트에서 전송한 데이터를 객체로 값을 넣어주고, 컨트롤러에서 사용할 수 있도록 해주는 것
+		전달된 데이터는 mapper를 통해 db에 저장됨
 */

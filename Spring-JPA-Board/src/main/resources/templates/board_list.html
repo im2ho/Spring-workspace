@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Board List</title>
+	</head>
+	<body>
+		<h1>게시글 목록</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>no</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>상세보기</th>
+					<th>수정하기</th>
+					<th>삭제하기</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="board : ${boards}">
+					<td th:text="${board.board_id}"></td>
+					<td th:text="${board.title}"></td>
+					<td th:text="${board.author}"></td>
+					<td><a th:href="@{/boards/details/{id}(id=${board.board_id})}">클릭</a></td>
+					<td><a th:href="@{/boards/update/{id}(id=${board.board_id})}">수정</a></td>
+					<td><a th:href="@{/boards/delete/{id}(id=${board.board_id})}" onclick="return showAlert()">삭제</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<button><a th:href="@{/boards/new}">Add New Board</a></button>
+		<button><a href="#" th:onclick="checkDelete()">게시글 전체 삭제</a></button>
+		
+		<script th:inline="javascript">
+			function showAlert(){
+				var confirmToDelete = confirm("정말 삭제하시겠습니까?");
+				if(confirmToDelete){
+					alert("삭제 되었습니다.");
+					return true;
+				} else {
+					alert("삭제가 취소되었습니다.");
+					return false;
+				}
+			}
+			
+			function checkDelete(){
+				var checkDelete = confirm("게시물을 모두 삭제하겠습니까?");
+				if(checkdelete){
+					window.location.href='/boards/delete-all-boards';
+				} else {
+					alert("게시물 삭제를 취소했습니다.");
+				}
+			}
+		</script>
+	</body>
+</html>

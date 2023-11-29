@@ -18,6 +18,7 @@ import lombok.Setter;
 @Table(name="Products") //와 쩐다! 테이블이 없으면 sql설정으로 테이블도 만들어줌 ㄷㄷ
 //이미 DB가 존재할 경우 테이블 명을 지정하지 않으면 됨 (@Table을 써서 테이블 가져오거나, class명으로 맞춰주거나)
 @SequenceGenerator(name="product_sequence", sequenceName="product_sequence", allocationSize=1)
+//클래스 외부에 어노테이션 : 간접지정
 public class Products {
 
 	/*

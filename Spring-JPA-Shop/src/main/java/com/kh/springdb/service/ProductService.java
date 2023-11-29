@@ -32,6 +32,8 @@ public class ProductService {
 	}
 	
 	//저장(insert)하는 메서드
+		// if 최초 작성 내용 > 그대로 저장 
+		// if 기존에 작성한 내용 > 수정해서 저장
 	public Products saveProduct(Products product) {
 		return productRepository.save(product);
 	}
@@ -43,5 +45,6 @@ public class ProductService {
 }
 
 /*
-	Optional : 제품의 존재 여부를 체크할 수 있게 해주는 객체
+	Optional : 제품의 존재 여부를 체크할 수 있게 해주는 객체 (옵션체크)
+		> 추후 null값 혹은 존재하지 않는 값을 url에 입력했을 경우 어떻게 처리할 것인지? 처리 가능하다
 */
