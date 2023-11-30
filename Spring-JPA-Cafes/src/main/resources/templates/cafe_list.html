@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>CAFE List</title>
+	</head>
+	<body>
+		<h1>CAFE List</h1><br>
+		
+		<!--카페 검색(외부)-->
+		<form th:action="@{/cafes/search}" role="search" method="GET">
+			<span>카페 검색(외부)</span>
+			<input type="text" name="keyword" placeholder="상호명을 검색하세요"/>
+			<button type="submit">검색</button>
+		</form>
+		
+		<!--카페 검색(내부)-->
+		<form th:action="@{/cafes}" method="GET">
+			<span>카페 검색(내부)</span>
+			<input type="text" id="search" name="name" placeholder="상호명을 검색하세요"/>
+			<button type="submit">검색</button>
+		</form>
+		
+		<table>
+			<tr th:each="cafe : ${cafes}"></tr>
+		</table>
+		
+		<br>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>no</th>
+					<th>상호명</th>
+					<th>지역</th>
+					<th>영업시간</th>
+					<th>기타</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cafe : ${cafes}">
+					<td th:text="${cafe.cafe_id}"></td>
+					<td th:text="${cafe.name}"></td>
+					<td th:text="${cafe.location}"></td>
+					<td th:text="${cafe.opening_hours}"></td>
+					<td>
+						<a th:href="@{/cafes/details/{id}(id=${cafe.cafe_id})}">상세보기</a>
+						<span>|</span>
+						<a th:href="@{/cafes/delete/{id}(id=${cafe.cafe_id})}" onclick="return showAlert()">삭제</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<button><a th:href="@{/cafes/new}">카페 정보 추가</a></button>
+		<button><a href="#" th:onclick="checkDelete()">전체 삭제</a></button>
+		
+		<script th:inline="javascript">
+			function showAlert(){
+				var confirmToDelete = confirm("정말 삭제하시겠습니까?");
+				if(confirmToDelete){
+					alert("삭제 되었습니다.");
+					return true;
+				} else {
+					alert("삭제가 취소되었습니다.");
+					return false;
+				}
+			}
+			
+			function checkDelete(){
+				var checkDelete = confirm("모두 삭제하겠습니까?");
+				if(checkdelete){
+					window.location.href='/cafes/delete-all-cafes';
+				} else {
+					alert("삭제를 취소했습니다.");
+				}
+			}
+		</script>
+	</body>
+</html>
+
+<!--
+	th:field
+		작성한 내용을 post로 보냄
+	th:text
+		가져온 내용을 사용자한테 보여주기 위해 작성하는 텍스트
+-->

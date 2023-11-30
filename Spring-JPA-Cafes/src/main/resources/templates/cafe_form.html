@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>카페 정보 추가</title>
+	</head>
+	<body>
+		<h2>카페 정보 추가</h2>
+		<form th:object="${cafe}" method="post" th:action="@{/cafes/save}">
+			
+			<input type="hidden" th:field="*{cafe_id}"/>
+			<span th:text="${cafe_id}"></span><br/><!--이미 값이 존재하면 보여짐-->
+			
+			<label>상호명</label>
+			<input type="text" th:field="*{name}"/><br>
+			
+			<label>지역</label>
+			<input type="text" th:field="*{location}"/><br>
+			
+			<label>영업시간</label>
+			<input type="text" th:field="*{opening_hours}"/><br>
+			
+			<button type="submit">저장</button>	
+		</form>
+		
+		<button><a th:href="@{/cafes}">돌아가기</a></button>
+	</body>
+</html>
+
+<!--
+	th:field
+		작성한 내용을 post로 보냄
+	th:text
+		가져온 내용을 사용자한테 보여주기 위해 작성하는 텍스트
+-->
