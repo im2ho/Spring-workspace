@@ -21,6 +21,15 @@ public interface CafeRepository extends JpaRepository<Cafe, Long>{
 	//특정 문자열을 포함한 엔터티를 검색하는데 사용하는 메서드 (자체에 일부 검색도 가능한 쿼리가 포함되어있다!)
 	List<Cafe> findByNameContaining(String keyword);
 	
+	//---------------------------------------------------
+	
+	//count를 이용해서 지역별 카페 개수가 몇 개인지 찾아보는 메서드
+	int countByLocation(String location);
+	
+	//---------------------------------------------------
+	
+	//카페의 존재여부 확인(boolean)
+	boolean existsByName(String name);
 }
 
 /*
@@ -65,5 +74,37 @@ public interface CafeRepository extends JpaRepository<Cafe, Long>{
 		
 		deleteByLocation(String Location)
 			=> DELETE FROM Cafe WHERE location = ?
-
+			
+	============================================================
+	
+	< JPA에서 SQL 구문 활용 >
+	
+	AND / OR / IS / EQUALS / BETWEEN 등등.. 비교연산자 및 기타 구문 사용법
+			 
+	1) AND 구문
+		findBy + 변수명1 + AND + 변수명2
+		
+	2) OR 구문
+		findBy + 변수명1 + OR + 변수명2
+		
+	3) IS 또는 EQUALS 구문
+		findBy + 변수명 + IS(Equals)
+	
+	4) BETWEEN / AFTER / BEFORE / LIKE 구문
+		findBy + 변수명 + Between(그 외)
+		
+	5) OrderBy 정렬 구문
+		findBy + 변수명 + OrderBy + 정렬기준변수명 + Asc(Desc)
+		
+	6) IN 구문
+		findBy + 변수명 + In(List<데이터타입 및 예약어> 변수명)
+		ex) findByNameIn(List<String> Name)
+	
+	7) TRUE / FALSE 구문
+		findBy + 변수명 + True(False)
+		= SQL : WHERE 테이블명의단축어.변수명 = true(혹은 false)
+		
+	8) IgnoreCase 구문
+		findBy + 변수명 + IgnoreCase
+		
 */

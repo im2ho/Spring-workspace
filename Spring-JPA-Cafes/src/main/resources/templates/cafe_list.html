@@ -21,6 +21,13 @@
 			<button type="submit">검색</button>
 		</form>
 		
+		<!--지역별 카페 개수 찾기-->
+		<form th:action="@{/cafes/count}" role="search" method="GET">
+			<span>지역별 카페 개수</span>
+			<input type="text" name="location" placeholder="지역명을 검색하세요"/>
+			<button type="submit">검색</button>
+		</form>
+		
 		<table>
 			<tr th:each="cafe : ${cafes}"></tr>
 		</table>
@@ -46,6 +53,8 @@
 						<a th:href="@{/cafes/details/{id}(id=${cafe.cafe_id})}">상세보기</a>
 						<span>|</span>
 						<a th:href="@{/cafes/delete/{id}(id=${cafe.cafe_id})}" onclick="return showAlert()">삭제</a>
+						<span>|</span>
+						<a th:href="@{/cafes/count/{location}(location=${cafe.location})}">지역별 카페 개수</a>
 					</td>
 				</tr>
 			</tbody>

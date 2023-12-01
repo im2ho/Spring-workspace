@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="UTF-8">
+	<title>쿠리만쥬 쇼핑몰</title>
+	</head>
+	<body>
+		<h2>쿠리만쥬 쇼핑몰</h2>
+		<div>
+			<th:block th:if="${loginMember} != null">
+				<p>로그아웃</p>
+			</th:block>
+			<th:block th:unless="${loginMember} != null">
+				<form>
+					<input type="email" name="email" placeholder="회원 이메일" required/>
+					<input type="password" name="password" placeholder="비밀번호" required/>
+					<button type="submit">로그인</button>
+				</form>
+			</th:block>
+			<a href="/members/new">회원가입</a>
+		</div>
+		<p>배너자리</p>
+		<img src="img/쿠리만쥬.jpg">
+		
+		<div>쇼핑리스트</div>
+	</body>
+</html>

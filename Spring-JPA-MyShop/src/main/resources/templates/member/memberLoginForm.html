@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>쿠리만쥬 쇼핑몰 로그인</title>
+	</head>
+	<body>
+		<h2>쿠리만쥬 쇼핑몰 로그인</h2>
+		<div>
+			<form>
+				<div>
+					<label>이메일주소</label>
+					<input type="email" name="email" placeholder="이메일을 입력해주세요"/>
+				</div>
+				<div>
+					<label>비밀번호</label>
+					<input type="password" name="password" placeholder="비밀번호를 입력해주세요"/>
+				</div>
+				<!-- 만약 로그인이 일치하지 않을 때, p태그가 보일 수 있도록 설정 -->
+				<p th:if="${loginErrorMsg}" th:text="${loginErrorMsg}">로그인시 나오는 문구</p>
+				<button type="submit">로그인</button>
+				<button></button>
+			</form>
+		</div>
+	</body>
+</html>

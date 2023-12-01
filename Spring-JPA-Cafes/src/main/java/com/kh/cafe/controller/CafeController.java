@@ -112,7 +112,7 @@ public class CafeController {
 	}
 	
 	
-	//특정 키워드를 활용해서 상호명을 검색하는 메서드
+	//특정 키워드를 활용해서 상호명을 검색하는 메서드 (외부검색)
 	@GetMapping("/search")
 	public String serachCafesByJPA(@RequestParam String keyword, Model model) {
 			
@@ -122,5 +122,40 @@ public class CafeController {
 			
 		return "searchResult";
 	}
+	
+	//지역별 카페 개수 확인--------------------------------------------------
+	
+	//count해준 location 가지고 오는 메서드 by @RequestParam (검색)
+	@GetMapping("/count")
+	public String countCafes(@RequestParam String location, Model model) {
+			
+		int cafeCount = cafeService.countCafesByLocation(location);
+			
+		model.addAttribute("location",location);
+		model.addAttribute("cafeCount",cafeCount);
+		return "cafeCount";
+	}
+	
+	//count해준 location 가지고 오는 메서드 by @PathVariable (url)
+	@GetMapping("/count/{location}")
+	public String countCafesByLocation(@PathVariable("location") String location, Model model) {
+		int cafeCount = cafeService.countCafesByLocation(location);
+		//1. 지역값을 저장할 모델
+		model.addAttribute("location", location);
+		//2. 지역 개수를 저장할 모델
+		model.addAttribute("cafeCount", cafeCount);
+		return "cafeCount";
+	}
+	
+	//카페 존재여부 확인----------------------------------------------------
+	
+	@GetMapping("/exists/{name}")
+	public String existsCafeByName(@PathVariable("name") String name, Model model) {
+		boolean cafeExists = cafeService.existCafeByNAME(name);
+		model.addAttribute("cafeExists", cafeExists);
+		return "cafeExists";
+	}
+	
+	
 	
 }

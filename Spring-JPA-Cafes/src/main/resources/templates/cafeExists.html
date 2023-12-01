@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Cafe Exists</title>
+	</head>
+	<body>
+		<h2>Cafe Exists</h2>
+		<p th:if="${cafeExists}">
+			<span th:text="'Cafe' + ${name} + ': 영업중'"></span>
+		</p>
+		<p th:unless="${cafeExists}">
+			<span th:text="'Cafe' + ${name} + '는 존재하지 않는 카페입니다'"></span>
+		</p>
+		<button><a th:href="@{/cafes}">돌아가기</a></button>
+	</body>
+</html>

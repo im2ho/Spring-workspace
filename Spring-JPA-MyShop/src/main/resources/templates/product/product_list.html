@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<h2>쿠리만쥬 쇼핑몰 상품 목록</h2>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>StockQuantity</th>
+					<th>Detail</th>
+					<th>add Cart</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product:${products}">
+					<td th:text="${product.product_id}"></td>
+					<td th:text="${product.name}"></td>
+					<td th:text="${product.category}"></td>
+					<td th:text="${product.price}"></td>
+					<td th:text="${product.stock_quantity}"></td>
+					<td>
+						<a th:href="@{/products/details/{id}(id=${product.product_id})}">상세보기</a>
+					</td>
+					<td>
+						<a th:href="@{}">add Cart</a>
+					</td>
+					<td>
+						<a th:href="@{/products/details/{id}(id=${product.product_id})}">수정</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
