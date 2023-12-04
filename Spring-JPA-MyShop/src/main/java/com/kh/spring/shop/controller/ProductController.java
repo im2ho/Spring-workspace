@@ -21,8 +21,12 @@ import com.kh.spring.shop.vo.Product;
 public class ProductController {
 
 	//멤버(필드)변수
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
+
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 	
 	//상품 조회
 	@GetMapping
@@ -47,6 +51,7 @@ public class ProductController {
 		model.addAttribute("product", new Product());
 		return "product/product_form";
 	}
+	
 	@PostMapping("/save")
 	public String saveProduct(@ModelAttribute Product product) {
 		productService.saveProduct(product);
@@ -60,4 +65,11 @@ public class ProductController {
 		product.ifPresent(value -> model.addAttribute("product",value));
 		return "product_form";
 	}
+	
+	//삭제
+	@GetMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/products";
+    }
 }

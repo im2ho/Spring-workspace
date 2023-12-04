@@ -47,8 +47,8 @@ public class ShopService {
 	} //createOrder()
 	
 	//상품 정보 조회 메서드 (난 ProductService에도 만들래용)
-	public Optional<Product> getProductById(Long product_id) {
-		return productRepository.findById(product_id);
+	public Product getProductById(Long product_id) {
+		return productRepository.findById(product_id).orElse(null);
 		//Optional을 쓰고싶지 않을 경우
 		//return productRepository.findById(product_id).orElse(null);
 	}

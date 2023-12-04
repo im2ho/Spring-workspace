@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 쿼리문 작성 -->
+<mapper namespace="com.kh.springdb.model.dao.MemberDAO">
+	<insert id="insertMember" parameterType="com.kh.springdb.model.vo.MemberVO">
+		INSERT INTO member(user_no, user_id, user_pw, user_name, user_addr, reg_date)
+		VALUES(member_seq.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userAddr}, SYSDATE)
+	</insert>
+	<select id="selectMember">
+	</select>
+</mapper>

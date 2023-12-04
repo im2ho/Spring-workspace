@@ -12,8 +12,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="orderId_seq")
 	@SequenceGenerator(name="orderId_seq", sequenceName="orderId_seq", allocationSize=1)
-	@Column(name="order_id")
-	private Long order_id;
+	private Long id;
 	
 	@ManyToOne //x=3같은 관계
 	@JoinColumn(name="product_id") 

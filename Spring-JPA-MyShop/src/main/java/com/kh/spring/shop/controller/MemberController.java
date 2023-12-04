@@ -32,10 +32,10 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	@PostMapping("/new")
+	@PostMapping("/save")
 	public String addMember(@ModelAttribute Member member) {
 		memberService.saveMember(member);
-		return "redirect:/";
+		return "redirect:/members";
 	}
 	
 	//로그인 & 로그인 실패 : @GetMapping & @GetMapping

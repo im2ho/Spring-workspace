@@ -13,12 +13,6 @@ public class MemberService /*implements UserDetailsService*/ {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	/*생성자
-	@Autowired
-	private MemberService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}*/
-	
 	//1. 회원가입 메서드
 	public Member saveMember(Member member) {
 		return memberRepository.save(member);
@@ -31,10 +25,10 @@ public class MemberService /*implements UserDetailsService*/ {
 		
 		//이미 존재하는 회원일 경우 > Exception 활용하기
 		//DB에서 이미 가입된 회원의 이메일이 존재한다면 예외를 발생시키는 if문
-		if(findMember != null) {
+		//if(findMember != null) {
 			//IllegalStateException : 어떤 행위를 요청했을 때, 그것이 불가능할 경우
-			throw new IllegalStateException("이미 존재하는 회원정보입니다");
-		}
+		//	throw new IllegalStateException("이미 존재하는 회원정보입니다");
+		//}
 	}
 }
 

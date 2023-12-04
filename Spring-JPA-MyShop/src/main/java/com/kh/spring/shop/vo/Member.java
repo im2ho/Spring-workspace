@@ -13,7 +13,7 @@ public class Member {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="memberId_seq")
 	@SequenceGenerator(name="memberId_seq", sequenceName="memeberId_seq", allocationSize=1)
 	@Column(name="member_id")
-	private Long memeber_id;
+	private Long id;
 	
 	private String name;
 	

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="Product") //Member 테이블 만들게요~
+@Table(name="ProductList") //Member 테이블 만들게요~
 @Getter @Setter
 public class Product {
 
@@ -13,9 +13,9 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="productId_seq")
 	@SequenceGenerator(name="productId_seq", sequenceName="productId_seq", allocationSize=1)
 	@Column(name="product_id")
-	private Long product_id;
+	private Long id;
 	
-	private String name;
+	private String product_name;
 	
 	private String category;
 	

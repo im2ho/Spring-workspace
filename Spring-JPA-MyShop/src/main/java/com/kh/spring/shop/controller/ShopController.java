@@ -37,9 +37,9 @@ public class ShopController {
 	}
 	
 	@PostMapping("/paymentFinish")
-	public String processPayment(Long order_id, String paymentStatus, Model model) {
+	public String processPayment(Long orderId, String paymentStatus, Model model) {
 		//주문에 대한 결제를 처리하고 payment를 반환
-		shopService.savePayment(order_id, paymentStatus);
+		shopService.savePayment(orderId, paymentStatus);
 		model.addAttribute("msg", "결제가 성공적으로 처리되었습니다.");
 		
 		return "redirect:/paymentCheck";

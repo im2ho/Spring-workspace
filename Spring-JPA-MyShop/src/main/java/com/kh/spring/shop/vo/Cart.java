@@ -19,7 +19,7 @@ public class Cart {
 		//장바구니에 이미 담겨져있는 CartItem들을 확인하기 위한 반복문을 설정
 		for(CartItem item : items) {
 			//만약 장바구니에 담긴 제품과 현재 추가하려는 제품이 동일하다면
-			if(item.getProduct().getProduct_id().equals(product.getProduct_id())) {
+			if(item.getProduct().getId().equals(product.getId())) {
 				//해당 제품의 수량을 추가하려는 만큼 증가
 				item.setQuantity(item.getQuantity() + quantity);
 				return;
