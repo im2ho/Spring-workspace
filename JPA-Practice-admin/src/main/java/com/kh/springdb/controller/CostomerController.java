@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.springdb.service.CostomerService;
 import com.kh.springdb.vo.Costomer;
 
+import lombok.AllArgsConstructor;
+
 @Controller
 @RequestMapping("/costomers")
+@AllArgsConstructor
 public class CostomerController {
 
-	private final CostomerService costomerService;
-	
 	@Autowired
-	public CostomerController(CostomerService costomerService) {
-		this.costomerService = costomerService;
-	}
+	private final CostomerService costomerService;
 	
 	//INSERT 회원가입
 	@GetMapping("/new")
