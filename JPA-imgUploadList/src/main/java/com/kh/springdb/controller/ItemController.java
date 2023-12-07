@@ -41,8 +41,8 @@ public class ItemController {
 	//상세 페이지
 	@GetMapping("/item/detail/{id}")
 	public String itemDetail(@PathVariable("id") int id, Model model) {
-		Optional<Item> item = itemService.ItemDetailView(id);
-		item.ifPresent(value -> model.addAttribute("item",value));
+		Item item = itemService.getItemById(id);
+		model.addAttribute("item",item);
 		return "itemDetail";
 	}
 	

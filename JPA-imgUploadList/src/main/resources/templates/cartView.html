@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>장바구니</title>
+	</head>
+	<body>
+		<h1>장바구니</h1>
+		<a th:href = "@{/item/list}">돌아가기</a>
+		<div th:if="${cart != null}">
+			<table border="1">
+				<thead>
+					<tr>
+						<th></th>
+						<th>상품명</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>총 가격</th>
+					</tr>
+				</thead>
+				<tbody th:each="cartItem : ${cart.cartItems}">
+					<tr>
+						<td><img th:src="@{${cartItem.item.imgPath}}" style="width:200px"></img></td>
+						<!--CartItem에 있는 객체 내 item에 존재하는 name속성 하단 설명-->
+						<td th:text="${cartItem.item.name}"></td>
+						<td th:text="${cartItem.item.price}"></td>
+						<td th:text="${cartItem.count}"></td>
+						<td th:text="${cartItem.item.price}*${cartItem.count}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!--총 가격 및 수량을 작성해주는 p 태그-->
+			<p>총가격 : <span th:text="${cart.getTotalAmount()}"></span></p>
+			<!--<p>총가격 : <span th:text="${cart.totalAmount}"></span></p>-->
+			<p>총수량 : <span th:text="${cart.getTotalCount()}"></span></p>
+			<!--<p>총수량 : <span th:text="${cart.totalCount}"></span></p>-->
+			<div th:if="${param.checkoutStatus == 'success'}">
+				<p>결제 완료</p>
+			</div>
+			<!--
+				param.checkoutStatus == 'empty'
+				http://127.0.0.1:8082/cart? ch
+			-->
+			<div th:if="${param.checkoutStatus == 'empty'}">
+				<p>장바구니가 비었습니다.</p>
+			</div>
+			<form th:action="@{/cart/checkout}" method="post">
+				<button type="submit">결제</button>
+			</form>
+		</div>
+		<div th:unless="${cart != null}">
+			<p>장바구니가 비었습니다.</p>
+		</div>
+	</body>
+</html>
+
+<!--
+	CartItem에 있는 객체 내 item에 존재하는 name속성
+	public class CartItem {
+		private Item item;
+	}
+	
+	CartItem에 포함해서 작성해준 필드 Item에 들어가서
+	public class Item{
+		private String name;
+		private String price;
+	}
+	로 지정해준 값을 가지고 온다!
+-->

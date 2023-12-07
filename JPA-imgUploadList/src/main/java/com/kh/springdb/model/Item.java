@@ -16,8 +16,8 @@ public class Item {
 
 	//id, name, text, price, count, stock, isSoldOut
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="items_seq")
-	@SequenceGenerator(name="items_seq", sequenceName="items_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="item_seq")
+	@SequenceGenerator(name="item_seq", sequenceName="item_seq", allocationSize=1)
 	private int id;
 	
 	private String name;
