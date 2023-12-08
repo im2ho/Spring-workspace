@@ -92,9 +92,10 @@ public class CartService {
 			//결제 이후 문제가 생길 것을 대비해서 DB에도 주문내역을 저장
 			orderRepository.save(order);
 			
-			//delete clear (주문완료 > 장바구니 비우기)
+			//delete or clear (주문완료 > 장바구니 비우기)
 			cartItemRepository.deleteAll();
-			cart.getCartItems().clear();
+			cart.getCartItems().clear(); 
+			//clear() : 배열이나 List, set같은 컬렉션에서 리스트나 컬렉션을 초기화할 때 사용
 			cartRepository.save(cart);
 		}
 	}

@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ItemController {
 
-	private final ItemService itemService;
+	private final ItemService itemService; //final :지정되지 않은 값(초기화되지 않은 상태) 허용 X
 	
 	//메인페이지
 	@GetMapping("/")

@@ -63,7 +63,7 @@ public class CartController {
 	//결제 완료 후 장바구니 비우기(삭제)
 	@PostMapping("/checkout")
 	public String checkout(RedirectAttributes redirectAttribute) {
-		Long cartId = 1L;
+		Long cartId = 1L; //유저 1명을 가정 > 추후 로그인한 유저 값으로 바꿔줘야한다
 		try {
 			cartService.checkout(cartId);
 			redirectAttribute.addFlashAttribute("checkoutStatus","success");

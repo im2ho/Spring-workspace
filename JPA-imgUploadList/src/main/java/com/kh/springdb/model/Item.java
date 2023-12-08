@@ -28,7 +28,9 @@ public class Item {
 	private int isSoldOut;
 	
 	//이미지 업로드를 위한 파일명, 이미지 경로, 상품 등록 날짜
+	@Column(nullable=true)
 	private String imgName;
+	@Column(nullable=true)
 	private String imgPath;
 	
 	@DateTimeFormat(pattern="yyyy-mm-dd")
