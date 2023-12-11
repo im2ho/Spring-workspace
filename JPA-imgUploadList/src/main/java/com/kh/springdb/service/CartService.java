@@ -31,9 +31,10 @@ public class CartService {
     
     @Autowired
     private OrderRepository orderRepository;
-
-    public List<CartItem> findCartItemByCartId(int cartId) {
-        return cartItemRepository.findCartItemByItemId(cartId);
+    
+    //cartId로 CartItem 찾기
+    public List<CartItem> findCartItemByCartId(Long cartId) {
+        return cartItemRepository.findByCartId(cartId);
     }
 
     public List<CartItem> findByItemId(int itemId) {
@@ -93,10 +94,11 @@ public class CartService {
 			orderRepository.save(order);
 			
 			//delete or clear (주문완료 > 장바구니 비우기)
+			//cartRepository.deleteAll(); //cart를 지워버리고싶은데..
 			cartItemRepository.deleteAll();
-			cart.getCartItems().clear(); 
+			//cart.getCartItems().clear(); 
 			//clear() : 배열이나 List, set같은 컬렉션에서 리스트나 컬렉션을 초기화할 때 사용
-			cartRepository.save(cart);
+			//cartRepository.save(cart);
 		}
 	}
 

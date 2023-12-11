@@ -29,7 +29,13 @@
 		<div class="item-container">
 			<div class="item">
 				<div th:each="item:${items}"><br>
-					<img th:src="@{${item.getImgPath()}}" style="width: 100%;"/><br>
+					<!--상품 이미지가 없을 경우 텅.png 띄우기-->
+					<div th:if="${item.imgPath != null and item.imgName !=null}">
+						<img th:src="@{${item.getImgPath()}}" style="width: 100%;"/><br>
+					</div>
+					<div th:unless="${item.imgPath != null and item.imgName !=null}">
+						<img th:src="@{/img/텅.png}"/>
+					</div>
 					<label>상품명 : </label>
 					<span th:text="${item.name}"></span><br>
 					<label>가격 : </label>

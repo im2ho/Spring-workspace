@@ -33,6 +33,11 @@ public class Cart {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
+	//카트에 담긴 총 상품 개수
+	private int count;
+	
+	//========================================================================
+	
 	public int getTotalAmount() {
 		return cartItems.stream().mapToInt(item -> 
 			item.getCount() * Integer.parseInt(item.getItem().getPrice())).sum();
@@ -50,9 +55,6 @@ public class Cart {
 		//sum() : 앞에서 int로 감싸진 count 값을 모두 더해주는 메서드
 		return cartItems.stream().mapToInt(CartItem::getCount).sum();
 	}
-	
-	//카트에 담긴 총 상품 개수
-	private int count;
 	
 	/*
 	@Id

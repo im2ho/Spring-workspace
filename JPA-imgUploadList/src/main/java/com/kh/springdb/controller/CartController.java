@@ -34,7 +34,10 @@ public class CartController {
 	@GetMapping
 	public String viewCart(Model model) {
 		Cart cart = cartService.getCartById(1L);
+		//cartItem가 비었는지?
+		List<CartItem> cartItems = cartService.findCartItemByCartId(1L);
 		model.addAttribute("cart", cart);
+		model.addAttribute("cartItems", cartItems);
 		return "cartView";
 	}
 	
@@ -63,11 +66,14 @@ public class CartController {
 	//결제 완료 후 장바구니 비우기(삭제)
 	@PostMapping("/checkout")
 	public String checkout(RedirectAttributes redirectAttribute) {
+		//RedirectAttributes : 인터페이스  > addFlashAttribute 메서드 정의
 		Long cartId = 1L; //유저 1명을 가정 > 추후 로그인한 유저 값으로 바꿔줘야한다
 		try {
+			//결제완료
 			cartService.checkout(cartId);
 			redirectAttribute.addFlashAttribute("checkoutStatus","success");
 		} catch(Exception e) {
+			//결제실패
 			redirectAttribute.addFlashAttribute("checkoutStatus","empty");
 		}
 		return "redirect:/cart";

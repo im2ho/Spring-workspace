@@ -6,4 +6,6 @@ import com.kh.springdb.model.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Long>{
 
+	//Cart 삭제
+	void deleteAll();
 }
