@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>상품 목록</title>
+		<style>
+		.item-container{
+			max-width: 900px;
+			margin: 0 auto;
+		}
+		.item{
+			float:left;
+			width:200px;
+			border:1px solid #ccc;
+			padding: 10px;
+			text-align: center;
+			margin:10px;
+		}
+		.item img{
+			width:100%;
+			height:auto;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>상품 목록</h1>
+		<a th:href="@{/product/new}">상품 등록</a><br>
+		<a th:href = "@{/cart}">장바구니인데 아직 안만들었어요</a>
+		<div class="item-container">
+			<div class="item">
+		  <!-- 1 --><div th:each="product, loop : ${paging.content}"><br>
+					<div>
+						<img th:src="@{${product.getImgPath()}}" style="width: 100%;">
+					</div>
+					<label>제품명 : </label>
+					<span th:text="${product.name}"></span><br>
+					
+					<label>가격 : </label>
+					<span th:text="${product.price}"></span><br>
+					
+					<a th:href="@{'/product/detail/' + ${product.id}}">상세보기</a>
+					
+					<!-- 장바구니에 상품을 담고자 한다면 장바구니에 담기 버튼 생성해서 담아주기 -->
+					<form th:action="@{/cart/add}" method="post">
+						<input type="hidden" name="productId" th:value="${product.id}"/>
+						<button type="submit">add cart</button>
+					</form>
+					<!--게시물에 번호 주기-->
+					<p th:text="${paging.getTotalElements-(paging.number * paging.size)-loop.index}"></p>
+				</div>
+				<!-- 페이징을 위한 번호 목록 생성 -->
+				<div th:if="${!paging.isEmpty()}">
+					<ul>
+						<li th:disabled="${!paging.hasPrevious}">
+							<!--
+								""로 감싸진 thymeleaf 안에
+								''로 감싸서 문자와 코드를 구분해왔지만
+								||(파이프)로 감싸진 문구는 동적으로 바뀌는 문자열을 의미
+							-->
+							<a th:href="@{|?page=${paging.number-1}|}">
+								<span>이전</span>
+							</a>
+						</li>
+						<li 
+							th:each="page:${#numbers.sequence(0, paging.totalPages-1)}"
+							
+							th:classappend="${page==paging.number} ? 'active'"
+						>
+							<a th:text="${page}" th:href="@{|?page=${page}|}">
+								<span>현재페이지로, 지울예정</span>
+							</a>
+						</li>
+						<li th:disabled="${!paging.hasNext}">
+							<a th:href="@{|?page=${paging.number+1}|}">
+								<span>다음</span>
+							</a>
+						</li>
+					</ul>
+					
+				</div>
+				<!--
+					paging.isEmpty = 게시물이 존재하는지 여부 체크
+					paging.totalElements = 전제 게시물 개수
+					paging.totalPages = 전체 페이지 개수
+					paging.size = 페이지 당 보여줄 게시물 수
+					paging.number = 현재 페이지 번호
+					paging.hasPrevious = 이전 페이지 존재 여부
+					paging.hasNext = 다음 페이지 존재 여부 (다음 페이지가 존재하지 않는 다면 작동 방지)
+				-->
+			</div>
+		</div>
+	</body>
+</html>

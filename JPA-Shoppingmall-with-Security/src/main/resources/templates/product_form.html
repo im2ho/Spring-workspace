@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>상품 등록</title>
+	</head>
+	<body>
+		<h2>상품 등록</h2>
+		<form th:action="@{/product/new}" method="post" enctype="multipart/form-data">
+			<label>판매 상태</label>
+			<input type="radio" name="isSoldout" id="isSoldout" value="0"/>판매중<br>
+			<input type="radio" name="isSoldout" id="isSoldout" value="1"/>판매중지<br>
+			
+			<label>제품명 : </label>
+			<input type="text" name="name" id="name" placeholder="제품명을 입력하세요"/>
+			<br>
+			
+			<label>제품 상세설명 : </label>
+			<input type="text" name="text" id="text" placeholder="상세설명을 작성하세요"/>
+			<br>
+			
+			<label>가격 : </label>
+			<input type="text" name="price" id="price" placeholder="가격을 입력하세요"/>
+			<br>
+			
+			<label>재고 : </label>
+			<input type="text" name="stock" id="stock" placeholder="재고량을 입력하세요"/>
+			<br>
+			
+			<label>대표 이미지 : </label>
+			<input type="file" name="imgFile" id="imgFile"/>
+			
+			<button type="submit">등록</button>
+		</form>
+	</body>
+</html>

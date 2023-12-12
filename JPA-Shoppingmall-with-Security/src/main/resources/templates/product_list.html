@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>상품 목록</title>
+		<style>
+		.item-container{
+			max-width: 900px;
+			margin: 0 auto;
+		}
+		.item{
+			float:left;
+			width:200px;
+			border:1px solid #ccc;
+			padding: 10px;
+			text-align: center;
+			margin:10px;
+		}
+		.item img{
+			width:100%;
+			height:auto;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>상품 목록</h1>
+		<a th:href="@{/product/new}">상품 등록</a><br>
+		<a th:href = "@{/cart}">장바구니인데 아직 안만들었어요</a>
+		<div class="item-container">
+			<div class="item">
+				<div th:each="product:${products}"><br>
+					<div>
+						<img th:src="@{${product.getImgPath()}}" style="width: 100%;">
+					</div>
+					<label>제품명 : </label>
+					<span th:text="${product.name}"></span><br>
+					
+					<label>가격 : </label>
+					<span th:text="${product.price}"></span><br>
+					
+					<a th:href="@{/product/detail/{id}(id=${product.id})}">상세보기</a>
+					
+					<!-- 장바구니에 상품을 담고자 한다면 장바구니에 담기 버튼 생성해서 담아주기 -->
+					<form th:action="@{/cart/add}" method="post">
+						<input type="hidden" name="productId" th:value="${product.id}"/>
+						<button type="submit">add cart</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
