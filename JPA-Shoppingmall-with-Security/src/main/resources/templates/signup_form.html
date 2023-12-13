@@ -8,6 +8,15 @@
 		<h2>회원가입</h2>
 		<form th:action="@{/user/signup}" th:object="${userCheckForm}" method="post">
 			<div>
+				<label>회원 분류</label>
+				<select th:field="*{isRole}">
+					<option value="ADMIN">관리자</option>
+					<option value="USER">일반회원</option>
+				</select>
+				<!--<input type="radio" name="isRole" id="isRole" value="ADMIN"/>관리자
+				<input type="radio" name="isRole" id="isRole" value="USER"/>일반회원<br>-->
+			</div>
+			<div>
 				<label for="username">사용자id</label>
 				<input type="text" th:field="*{username}"/>
 			</div>
@@ -18,6 +27,7 @@
 			<div>
 				<label for="password2">비밀번호 확인</label>
 				<input type="password" th:field="*{password2}"/>
+				<form:errors path="password2" class="error"/>
 			</div>
 			<div>
 				<label for="email">이메일</label>

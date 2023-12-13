@@ -20,3 +20,29 @@
 		<a sec:authorize="isAuthenticated()" th:href="@{/product/list}">상품 구경하기</a>
 	</body>
 </html>
+
+<!--
+	
+	sec:authorize = 작성할 메서드
+	
+	1. hasRole("ROLE_ADMIN") : 
+		ROLE_ADMIN 권한을 가진 사용자에게만 보이는 컨텐츠 (div, button 등등...)
+	
+	2. hasRole("'ROLE_USER', 'ROLE_ADMIN'") :
+		로그인한 회원과 관리자에게만 보이는 컨텐츠 (비회원은 볼 수 없음)
+	
+	3. isAuthenticated() :
+		로그인한 사용자에게만 보이는 내용 (인증되지 않은 사용자일 경우 앞에 ! 붙여주기)
+	
+	4. isAnonymous() : 
+		로그아웃 상태에서 보이는 내용 (로그인 X)
+	
+	5. permitAll() : 
+		모든 사용자 접근 가능
+	
+	6. denyAll() : 
+		모든 사용자 접근 거부 & 내용 숨김
+	
+	7. hasIpAddress('가능한IP주소') : 
+		요청이 특정IP 주소에서 온 경우만 내용을 보임
+-->

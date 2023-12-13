@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.springdb.model.Product;
@@ -75,7 +76,7 @@ public class ProductController {
 		Product product = productService.getProductById(id);
 		//하나의 아이디 값을 가지고와서 지정된 제품을 모든 내용을 보여줄 수 있도록
 		//"product" templates 밑에서 thymeleaf로 불러올 변수명을 product로 지정
-		//Product product 만들어준 필드명을 가져와서 servic로 불러온 내용을 "product"안에 저장해줌
+		//Product product 만들어준 필드명을 가져와서 service로 불러온 내용을 "product"안에 저장해줌
 		model.addAttribute("product", product);
 		return "product_detail";
 	}
@@ -86,5 +87,21 @@ public class ProductController {
 		commentService.addComment(productId, commentContent);
 		return "redirect:/product/detail/" + productId;
 	}
+	
+	//댓글 삭제
+	@GetMapping("/delete/{id}")
+	public String deleteComment(@PathVariable("id") Long id) {
+		commentService.deleteComment(id);
+		return "redirect:/product/list";
+	}
+	
+	
+	//찜(좋아요)한 내용을 받을 수 있는 PostMapping
+	//@PostMapping("/like")
+	//public String like(int productId) {
+	//	productService.likeProduct(productId);
+	//	return "redirect:/product/list";
+	//}
+	
 	
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
 		<meta charset="UTF-8">
 		<title>상세정보</title>
@@ -43,9 +43,10 @@
 					<span th:text="${product.stock}"></span><br>
 					
 					<!--댓글-->
-					<h4>+++++댓글+++++</h4>
+					<h4>=====댓글=====</h4>
 					<div th:each="comment:${product.comments}">
-						<p th:text="${comment.content}"></p>
+						<span th:text="${comment.content}"></span>
+						<a th:href="@{/delete/{id}(id=${comment.id})}" onclick="return showAlert()">x</a>
 					</div>
 					<!--댓글 입력-->
 					<form th:action="@{/addComment(productId=${product.id}, commentContent=${commentContent})}" method="post">
@@ -59,5 +60,17 @@
 				</div>
 			</div>
 		</div>
+		<script th:inline="javascript">
+			function showAlert(){
+				var confirmToDelete = confirm("정말 삭제하시겠습니까?");
+				if(confirmToDelete){
+					alert("삭제 되었습니다.");
+					return true;
+				} else {
+					alert("삭제가 취소되었습니다.");
+					return false;
+				}
+			}
+		</script>
 	</body>
 </html>

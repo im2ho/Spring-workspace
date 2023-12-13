@@ -19,4 +19,7 @@ public class Comment {
 	
 	private String content;
 	
+	//댓글에 좋아요 누르고싶다면
+	//댓글 객체로 와서 추천에 관련된 필드를 설정해주자
+	
 }

@@ -49,4 +49,10 @@ public class Product {
 	public void createDate() {
 		this.createDate = LocalDate.now();
 	}
+	
+	//상품 찜하기 클릭해서 횟수 추가하기
+	//방법1. 사용자 관계 없이 카운트만 올라가기
+	private Integer likes;
+	
+	//방법2. ManyToOne이나 OneToMany 이용해서 서로 카운트 주기
 }

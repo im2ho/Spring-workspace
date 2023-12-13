@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.springdb.model.UserCheckForm;
+import com.kh.springdb.model.UserRole;
 import com.kh.springdb.service.UserService;
 
 import jakarta.validation.Valid;
@@ -36,7 +37,10 @@ public class UserController {
 			bindingResult.rejectValue("password2", "passwordIncCorrect", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 			return "signup_form";
 		}
-		userService.create(usercheckform.getUsername(), usercheckform.getEmail(), usercheckform.getPassword1());
+		
+		//UserRole role = usercheckform.getIsRole();
+		
+		userService.create(usercheckform.getUsername(), usercheckform.getEmail(), usercheckform.getPassword1(), usercheckform.getIsRole());
 		return "redirect:/";
 	}
 	
